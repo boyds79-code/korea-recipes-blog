@@ -1,0 +1,62 @@
+name: Daily recipe draft
+
+on:
+  schedule:
+    # 매일 00:00 UTC = 08:00 Asia/Manila. 시간을 바꾸려면 이 cron 값을 수정하세요.
+    - cron: '0 0 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: daily-post
+  cancel-in-progress: false
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate recipe draft
+        id: generate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: npm run generate
+
+      - name: Open pull request for human review
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "New recipe draft: ${{ env.POST_TITLE }}"
+          branch: "draft/${{ env.POST_SLUG }}"
+          delete-branch: true
+          title: "🍲 Draft: ${{ env.POST_TITLE }}"
+          labels: draft-post
+          body: |
+            Auto-generated recipe draft, ready for human review.
+
+            - **Queue tier:** `${{ env.TOPIC_SOURCE }}`
+            - **File:** `src/content/blog/${{ env.POST_SLUG }}.md`
+
+            **Before merging:**
+            1. Read the recipe steps for accuracy — check quantities, timing, and technique make sense.
+            2. Check the ingredient list is complete and matches what the steps actually use.
+            3. Make sure it reads like a real, useful recipe rather than generic filler.
+            4. Merge this PR to publish (Vercel will auto-deploy on merge to `main`).
+
+            If the queue runs out, this workflow will fail with a clear message —
+            add more entries to `topics/queue.yaml` when that happens.
