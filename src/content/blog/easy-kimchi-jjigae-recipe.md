@@ -22,6 +22,10 @@ ingredients:
   - "1 tsp soy sauce, to taste"
   - "1/2 tsp sugar (helps balance sour kimchi)"
   - "1 tsp sesame oil"
+heroImage: "/images/blog/easy-kimchi-jjigae-recipe.jpeg"
+heroImageAlt: "Delicious seafood stew simmering in a wok with fresh vegetables. Perfect for food lovers."
+heroImageCredit: "Photo by makafood on Pexels"
+heroImageCreditUrl: "https://www.pexels.com/@makafood-82669418"
 ---
 
 If you only learn to make one Korean stew, make this one. Kimchi jjigae is the dish most Korean home cooks turn to when the kimchi in the fridge has gone properly sour — and that sourness is exactly what makes the stew taste right. Don't reach for fresh, crisp kimchi here; the funkier and more fermented it is, the better.
