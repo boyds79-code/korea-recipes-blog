@@ -4,10 +4,17 @@ const API_URL = 'https://api.anthropic.com/v1/messages';
 // https://docs.claude.com/en/docs/about-claude/models
 const DEFAULT_MODEL = 'claude-sonnet-4-5-20250929';
 
+// body_markdown 안의 재료 사진 경로에 실제 슬러그를 나중에 끼워 넣기 위한 placeholder.
+export const SLUG_PLACEHOLDER = '{{SLUG}}';
+
 /**
  * Claude API를 호출해서 레시피 글 초안을 JSON으로 받아옵니다.
+ * 사진은 자동으로 다운로드하지 않습니다 — 완성 사진(대표 이미지)과 재료 사진, 이렇게
+ * 정확히 2장의 자리만 잡아두고, 실제 사진은 사용자가 직접 찍거나 생성해서 채워 넣습니다.
  */
 export async function generateRecipeDraft({ dish, notes, tier, referenceStyle, apiKey, model }) {
+  // .env를 GUI 에디터로 저장할 때 섞여 들어갈 수 있는 보이지 않는 공백/줄바꿈 문자 방지
+  apiKey = apiKey?.trim();
   if (!apiKey) {
     throw new Error('ANTHROPIC_API_KEY가 설정되어 있지 않습니다. GitHub Actions Secret 또는 로컬 .env를 확인하세요.');
   }
@@ -26,6 +33,11 @@ Hard requirements:
 - Give realistic prep time, cook time, servings, and a difficulty level (easy/medium/hard) appropriate for a home cook outside Korea.
 - List ingredients with real, practical measurements (cups, tbsp, grams) — a reader should be able to shop from this list directly.
 - Do not fabricate specific brand names or invented nutrition/calorie numbers.
+
+Image requirements (you do not generate images yourself — a human will photograph/generate these):
+- Exactly two photos are needed for this post: the FINISHED dish (used as the cover image automatically — do not embed it inline yourself), and the raw INGREDIENTS laid out before cooking.
+- Embed a real Markdown image tag for the ingredients photo somewhere near the start of the body (before or during the first step), using EXACTLY this path: ![alt text](/images/blog/${SLUG_PLACEHOLDER}/ingredients.jpg). Use the literal text "${SLUG_PLACEHOLDER}" — do not invent a slug yourself.
+- Provide short descriptive alt text and a one-sentence shot description for both the finished-dish photo and the ingredients photo (for whoever is sourcing/shooting/generating them).
 
 You must respond by calling the "submit_recipe" tool exactly once with the complete recipe.`;
 
@@ -62,9 +74,21 @@ You must respond by calling the "submit_recipe" tool exactly once with the compl
               items: { type: 'string' },
               description: '2-5 short lowercase tags, e.g. ["stew", "beginner-friendly", "pork"]',
             },
-            image_query: {
-              type: 'string',
-              description: 'A short (2-4 word) English search phrase to find a relevant stock photo of this dish or its ingredients on a stock photo site (e.g. "kimchi stew", "korean fried chicken").',
+            finished_photo: {
+              type: 'object',
+              properties: {
+                alt: { type: 'string', description: 'Short accessibility/SEO alt text for the finished dish photo.' },
+                description: { type: 'string', description: 'One sentence describing how the finished dish should be plated/shot.' },
+              },
+              required: ['alt', 'description'],
+            },
+            ingredients_photo: {
+              type: 'object',
+              properties: {
+                alt: { type: 'string', description: 'Short accessibility/SEO alt text for the raw ingredients photo.' },
+                description: { type: 'string', description: 'One sentence describing how the ingredients should be laid out/shot.' },
+              },
+              required: ['alt', 'description'],
             },
             prep_time: { type: 'string', description: 'e.g. "15 minutes"' },
             cook_time: { type: 'string', description: 'e.g. "25 minutes"' },
@@ -77,7 +101,7 @@ You must respond by calling the "submit_recipe" tool exactly once with the compl
             },
             body_markdown: { type: 'string', description: 'The full recipe body in Markdown, per the system instructions (no ingredient list, no H1).' },
           },
-          required: ['title', 'description', 'tags', 'image_query', 'prep_time', 'cook_time', 'servings', 'difficulty', 'ingredients', 'body_markdown'],
+          required: ['title', 'description', 'tags', 'finished_photo', 'ingredients_photo', 'prep_time', 'cook_time', 'servings', 'difficulty', 'ingredients', 'body_markdown'],
         },
       },
     ],

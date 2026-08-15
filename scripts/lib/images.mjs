@@ -16,6 +16,10 @@ const IMAGES_DIR = path.join(ROOT, 'public', 'images', 'blog');
  * 무료 API 키 발급: https://www.pexels.com/api/
  */
 export async function findAndSaveHeroImage({ query, slug, apiKey }) {
+  // .env 파일을 GUI 에디터(TextEdit 등)로 저장할 때 줄바꿈이 CRLF로 바뀌거나 앞뒤 공백이
+  // 섞여 들어가는 경우가 있어서, 키에 보이지 않는 문자가 붙어 있어도 인증에 실패하지
+  // 않도록 여기서 한 번 정리합니다.
+  apiKey = apiKey?.trim();
   if (!apiKey) {
     console.log('[images] PEXELS_API_KEY가 없어 이미지 없이 진행합니다.');
     return null;

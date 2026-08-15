@@ -19,8 +19,8 @@
 - **Recipe 구조화 데이터(JSON-LD)** 를 자동으로 넣습니다. 조리시간·인분·재료 목록이
   구글 검색에 "레시피 리치 결과"로 노출될 가능성을 높여줍니다 (`src/layouts/RecipePost.astro`).
 
-나머지 구조(사람 검수 후 발행, 대표 이미지 자동 삽입, 애드센스 슬롯, About/Contact/Privacy
-페이지 등)는 `korea-blog`와 동일합니다.
+나머지 구조(사람 검수 후 발행, 애드센스 슬롯, About/Contact/Privacy 페이지 등)는 `korea-blog`와
+동일합니다.
 
 ## 시작하기
 
@@ -33,9 +33,8 @@ GitHub 저장소, 별도의 Vercel 프로젝트**로 만드는 걸 전제로 합
 3. 저장소 Settings → Actions → General → Workflow permissions에서 PR 생성 권한 켜기
 4. Anthropic API 키를 `ANTHROPIC_API_KEY`로 Secret 등록 (기존 블로그와 같은 키를 재사용해도
    되고, 사용량을 나눠 보고 싶으면 새로 발급받아도 됩니다)
-5. (선택) Pexels API 키를 `PEXELS_API_KEY`로 Secret 등록
-6. Vercel에서 이 저장소를 새 프로젝트로 Import → Deploy
-7. Actions 탭에서 "Daily recipe draft" 워크플로우를 수동 실행해서 PR이 잘 열리는지 테스트
+5. Vercel에서 이 저장소를 새 프로젝트로 Import → Deploy
+6. Actions 탭에서 "Daily recipe draft" 워크플로우를 수동 실행해서 PR이 잘 열리는지 테스트
 
 각 단계의 자세한 화면 조작법은 `korea-blog` 프로젝트를 설정할 때 받으신 가이드를 그대로
 따라 하시면 됩니다 — 저장소 이름과 사이트 이름만 다를 뿐 절차는 동일합니다.
@@ -49,6 +48,33 @@ GitHub 저장소, 별도의 Vercel 프로젝트**로 만드는 걸 전제로 합
 - `referenceStyle`은 Claude에게 "이런 톤으로 써줘"라고 참고시키는 용도일 뿐, 실제 그
   채널·블로그의 문장을 베끼거나 인용하지 않습니다 — 시스템 프롬프트에 명시해뒀습니다.
 - 큐가 비면 Actions 실행이 실패하며 이유를 로그에 남깁니다. 그때 새 레시피를 추가해주세요.
+
+## 사진은 직접 준비합니다 (재료 사진 + 완성 사진, 2장 고정)
+
+이 프로젝트는 사진을 자동으로 검색/다운로드하지 않습니다. Claude가 레시피를 쓰면서 정확히
+2장의 사진 계획을 세워서 글 파일에 남깁니다 — **완성된 요리 사진**(대표/커버 이미지)과
+**재료 사진**입니다.
+
+1. 생성된 `.md` 파일 맨 위, frontmatter 바로 아래에 이런 체크리스트가 HTML 주석으로 남습니다.
+   ```
+   <!--
+   📷 이 레시피에 필요한 사진 2장 — public/images/blog/<slug>/ 폴더 안에 아래 파일명 그대로 넣으면 자동으로 연결됩니다.
+   1. finished.jpg (대표/커버 이미지) — A close-up of the finished kimchi jjigae in a stone pot, garnished with green onion
+   2. ingredients.jpg — Raw sliced pork belly, chopped kimchi, tofu, and garlic laid out on a cutting board
+   -->
+   ```
+2. 재료 사진(`ingredients.jpg`)은 본문에도 이미 마크다운 이미지 태그로 들어가 있어서, 파일만
+   그 경로에 넣으면 자동으로 연결됩니다. 완성 사진(`finished.jpg`)은 대표 이미지로 쓰입니다.
+3. 사진을 준비해서(직접 촬영, AI 이미지 생성, 무료 스톡사이트 등 방법은 자유) 정확히 그
+   파일명으로 `public/images/blog/<slug>/` 안에 넣고, PR 브랜치에 커밋 → push 하면
+   (로컬 git 또는 GitHub 웹의 "Add file → Upload files") 자동으로 PR에 반영됩니다.
+
+사진을 넣기 전 PR 미리보기에는 깨진 이미지 아이콘이 보이는데, "아직 안 채웠다"는 정상적인
+신호입니다.
+
+`scripts/backfill-hero-image.mjs`(Pexels 자동 검색)는 여전히 남아있어서 급할 때 대표 이미지
+한 장을 빠르게 채우는 용도로 쓸 수 있지만, 기본 파이프라인에서는 더 이상 자동 호출되지
+않습니다.
 
 ## 참고한 리서치 출처
 

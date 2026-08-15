@@ -35,7 +35,6 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
-          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         run: npm run generate
 
       - name: Open pull request for human review
@@ -56,7 +55,13 @@ jobs:
             1. Read the recipe steps for accuracy — check quantities, timing, and technique make sense.
             2. Check the ingredient list is complete and matches what the steps actually use.
             3. Make sure it reads like a real, useful recipe rather than generic filler.
-            4. Merge this PR to publish (Vercel will auto-deploy on merge to `main`).
+            4. **Add the two photos.** Open the changed `.md` file — the top has an HTML comment
+               naming the two files this recipe needs (`finished.jpg`, `ingredients.jpg`) and what
+               each should show. Take/download/generate those photos and add them to
+               `public/images/blog/<slug>/` using those exact filenames, then commit them to this
+               same branch (locally with `git`, or via GitHub's web UI: switch to this PR's branch
+               and use "Add file → Upload files").
+            5. Merge this PR to publish (Vercel will auto-deploy on merge to `main`).
 
             If the queue runs out, this workflow will fail with a clear message —
             add more entries to `topics/queue.yaml` when that happens.
