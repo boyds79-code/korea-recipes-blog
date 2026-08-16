@@ -5,6 +5,9 @@ pubDate: 2026-08-15
 tags: ["stew", "jjigae", "beginner-friendly", "pork"]
 tier: "manual"
 draft: false
+heroImage: "/images/blog/easy-kimchi-jjigae-recipe/finished.jpg"
+heroImageAlt: "A close-up of kimchi jjigae (Korean kimchi stew) in a pot, garnished with green onion"
+
 prepTime: "10 minutes"
 cookTime: "20 minutes"
 servings: "2-3 servings"
