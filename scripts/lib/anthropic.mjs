@@ -30,6 +30,7 @@ Hard requirements:
 - Length: roughly 500-900 words for the body (excluding ingredients).
 - Tone: confident, warm, practical — like a home cook explaining to a friend, not a formal cookbook.
 - Include one natural place partway through (between two steps, not at the very start or end) where the text says literally "<!--AD_SLOT-->" on its own line.
+- Readability: keep paragraphs SHORT (2-4 sentences max). Bold (**text**) key timing/texture/quantity cues a cook needs to catch at a glance (e.g. "**cook for 2-3 minutes until lightly browned**"). Where it fits naturally, you may add ONE short Markdown blockquote callout (a line starting with "> ") for a genuinely useful tip or common-mistake warning, e.g. "> 💡 Tip: ..." — at most one per recipe, only if it adds real value.
 - Give realistic prep time, cook time, servings, and a difficulty level (easy/medium/hard) appropriate for a home cook outside Korea.
 - List ingredients with real, practical measurements (cups, tbsp, grams) — a reader should be able to shop from this list directly.
 - Do not fabricate specific brand names or invented nutrition/calorie numbers.
