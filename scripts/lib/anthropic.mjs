@@ -68,7 +68,7 @@ You must respond by calling the "submit_recipe" tool exactly once with the compl
         input_schema: {
           type: 'object',
           properties: {
-            title: { type: 'string', description: 'SEO-friendly recipe title, under 70 characters if possible.' },
+            title: { type: 'string', description: 'SEO-friendly recipe title, under 70 characters if possible. Do NOT include a specific year — this is an evergreen page, not a dated one.' },
             description: { type: 'string', description: 'Meta description, 140-160 characters, enticing and accurate.' },
             tags: {
               type: 'array',
