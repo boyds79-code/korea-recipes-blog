@@ -9,10 +9,6 @@
 #   tier: "popular" | "chef-simple"
 #   notes: "이 레시피에서 꼭 다뤘으면 하는 포인트 (선택)"
 #   referenceStyle: "톤/스타일 참고용 채널·블로그 (선택, 내용을 베끼라는 뜻이 아니라 톤 참고용)"
-- dish: Bibimbap
-  tier: popular
-  notes: 나물 반찬을 한 번에 여러 개 준비하는 순서, 고추장 비율
-  referenceStyle: My Korean Kitchen 톤 참고
 - dish: Tteokbokki (Spicy Rice Cakes)
   tier: popular
   notes: 분식집 스타일, 어묵/삶은 계란 추가하는 변형 포함
