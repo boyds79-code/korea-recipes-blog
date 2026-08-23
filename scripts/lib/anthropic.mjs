@@ -35,10 +35,10 @@ Hard requirements:
 - List ingredients with real, practical measurements (cups, tbsp, grams) — a reader should be able to shop from this list directly.
 - Do not fabricate specific brand names or invented nutrition/calorie numbers.
 
-Image requirements (you do not generate images yourself — a human will photograph/generate these):
-- Exactly two photos are needed for this post: the FINISHED dish (used as the cover image automatically — do not embed it inline yourself), and the raw INGREDIENTS laid out before cooking.
+Image requirements (images are AI-generated, not real photographs — write prompts accordingly):
+- Exactly two images are needed for this post: the FINISHED dish (used as the cover image automatically — do not embed it inline yourself), and the raw INGREDIENTS laid out before cooking.
 - Embed a real Markdown image tag for the ingredients photo somewhere near the start of the body (before or during the first step), using EXACTLY this path: ![alt text](/images/blog/${SLUG_PLACEHOLDER}/ingredients.jpg). Use the literal text "${SLUG_PLACEHOLDER}" — do not invent a slug yourself.
-- Provide short descriptive alt text and a one-sentence shot description for both the finished-dish photo and the ingredients photo (for whoever is sourcing/shooting/generating them).
+- Provide short descriptive alt text AND an "ai_prompt" (a ready-to-use AI-image-generation prompt in English) for both the finished-dish photo and the ingredients photo. Write prompts for professional food-photography style: natural lighting, appetizing, photorealistic, correct plating/ingredients matching the actual recipe (e.g. "Professional food photography of kimchi jjigae in a stone pot, garnished with green onion, natural window lighting, photorealistic, appetizing"). Do not ask for any readable text/labels in the image.
 
 You must respond by calling the "submit_recipe" tool exactly once with the complete recipe.`;
 
@@ -79,17 +79,17 @@ You must respond by calling the "submit_recipe" tool exactly once with the compl
               type: 'object',
               properties: {
                 alt: { type: 'string', description: 'Short accessibility/SEO alt text for the finished dish photo.' },
-                description: { type: 'string', description: 'One sentence describing how the finished dish should be plated/shot.' },
+                ai_prompt: { type: 'string', description: 'A ready-to-paste AI image generation prompt in English for the plated finished dish — professional food-photography style, photorealistic, no readable text.' },
               },
-              required: ['alt', 'description'],
+              required: ['alt', 'ai_prompt'],
             },
             ingredients_photo: {
               type: 'object',
               properties: {
                 alt: { type: 'string', description: 'Short accessibility/SEO alt text for the raw ingredients photo.' },
-                description: { type: 'string', description: 'One sentence describing how the ingredients should be laid out/shot.' },
+                ai_prompt: { type: 'string', description: 'A ready-to-paste AI image generation prompt in English for the raw ingredients laid out — photorealistic, natural lighting, no readable text.' },
               },
-              required: ['alt', 'description'],
+              required: ['alt', 'ai_prompt'],
             },
             prep_time: { type: 'string', description: 'e.g. "15 minutes"' },
             cook_time: { type: 'string', description: 'e.g. "25 minutes"' },
