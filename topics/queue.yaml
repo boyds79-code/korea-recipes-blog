@@ -9,10 +9,6 @@
 #   tier: "popular" | "chef-simple"
 #   notes: "이 레시피에서 꼭 다뤘으면 하는 포인트 (선택)"
 #   referenceStyle: "톤/스타일 참고용 채널·블로그 (선택, 내용을 베끼라는 뜻이 아니라 톤 참고용)"
-- dish: Gimbap (Korean Seaweed Rice Rolls)
-  tier: popular
-  notes: 밥 간하는 법, 마는 요령, 속재료 조합 추천
-  referenceStyle: Seonkyoung Longest 톤 참고
 - dish: Kimchi Fried Rice (Kimchi Bokkeumbap)
   tier: popular
   notes: 신 김치 활용법, 계란후라이 올리는 마무리
