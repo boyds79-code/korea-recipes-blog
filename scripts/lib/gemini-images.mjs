@@ -1,8 +1,8 @@
 // Gemini API로 AI 이미지를 자동 생성하는 모듈.
 //
-// generate-post.mjs가 Claude로부터 받은 finished_photo/ingredients_photo의 ai_prompt를
-// 가지고 이 모듈을 호출해 실제 이미지 파일을 만들어서 public/images/blog/<slug>/ 에
-// 저장합니다. GEMINI_API_KEY가 없거나, 생성이 실패(네트워크 오류, 안전 필터 차단 등)하면
+// generate-post.mjs가 Claude로부터 받은 image_plan(각 이미지의 ai_prompt)을 가지고
+// 이 모듈을 호출해 실제 이미지 파일을 만들어서 public/images/blog/<slug>/ 에 저장합니다.
+// GEMINI_API_KEY가 없거나, 특정 이미지 생성이 실패(네트워크 오류, 안전 필터 차단 등)하면
 // 그 이미지만 조용히 실패 처리하고 null을 반환합니다 — 글 생성 자체가 이미지 때문에
 // 실패해서는 안 되기 때문에, 실패한 이미지는 기존처럼 "직접 만들어서 넣어주세요"
 // 체크리스트로 남습니다 (add-photos.mjs / README 참고).
@@ -47,12 +47,25 @@ export async function generateImage({ prompt, apiKey, model }) {
     }
 
     const data = await res.json();
+    // Interactions API 응답 구조가 몇 차례 바뀌었습니다. 아래는 알려진 형태들을 순서대로 시도합니다:
+    // 1) 최상위 output_image.data (SDK 편의 프로퍼티 방식)
+    // 2) { interaction: { output_image: { data } } } (구버전 래핑 형태)
+    // 3) steps[].content[] 안에서 type:"image"인 항목의 data (2026-05 이후 steps 배열 방식)
+    // 4) candidates[].content.parts[].inlineData.data (구 generateContent 방식, 혹시 몰라 유지)
+    const imageFromSteps = Array.isArray(data?.steps)
+      ? data.steps
+          .flatMap((s) => (Array.isArray(s?.content) ? s.content : []))
+          .find((c) => c?.type === 'image')?.data
+      : undefined;
+
     const base64 =
+      data?.output_image?.data ||
       data?.interaction?.output_image?.data ||
+      imageFromSteps ||
       data?.candidates?.[0]?.content?.parts?.find((p) => p.inlineData)?.inlineData?.data;
 
     if (!base64) {
-      console.warn('[gemini-images] 응답에서 이미지 데이터를 찾지 못했습니다:', JSON.stringify(data).slice(0, 300));
+      console.warn('[gemini-images] 응답에서 이미지 데이터를 찾지 못했습니다:', JSON.stringify(data).slice(0, 800));
       return null;
     }
 
