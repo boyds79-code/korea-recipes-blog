@@ -9,10 +9,6 @@
 #   tier: "popular" | "chef-simple"
 #   notes: "이 레시피에서 꼭 다뤘으면 하는 포인트 (선택)"
 #   referenceStyle: "톤/스타일 참고용 채널·블로그 (선택, 내용을 베끼라는 뜻이 아니라 톤 참고용)"
-- dish: Bossam (Korean Boiled Pork Wraps)
-  tier: popular
-  notes: 잡내 없애는 삶는 법, 무생채 곁들이는 법
-  referenceStyle: Korean Bapsang 톤 참고
 - dish: Jeyuk Bokkeum (Spicy Stir-fried Pork)
   tier: popular
   notes: 고기 밑간 시간, 눌러붙지 않게 볶는 팁
