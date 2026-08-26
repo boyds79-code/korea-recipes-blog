@@ -9,10 +9,6 @@
 #   tier: "popular" | "chef-simple"
 #   notes: "이 레시피에서 꼭 다뤘으면 하는 포인트 (선택)"
 #   referenceStyle: "톤/스타일 참고용 채널·블로그 (선택, 내용을 베끼라는 뜻이 아니라 톤 참고용)"
-- dish: Jeyuk Bokkeum (Spicy Stir-fried Pork)
-  tier: popular
-  notes: 고기 밑간 시간, 눌러붙지 않게 볶는 팁
-  referenceStyle: Beyond Kimchee 톤 참고
 - dish: Dak Galbi (Spicy Stir-fried Chicken)
   tier: popular
   notes: 떡, 고구마 등 곁들이는 재료, 마지막 볶음밥 활용법
