@@ -9,10 +9,6 @@
 #   tier: "popular" | "chef-simple"
 #   notes: "이 레시피에서 꼭 다뤘으면 하는 포인트 (선택)"
 #   referenceStyle: "톤/스타일 참고용 채널·블로그 (선택, 내용을 베끼라는 뜻이 아니라 톤 참고용)"
-- dish: Leveled-Up Korean Ramyeon (Instant Noodle Upgrades)
-  tier: popular
-  notes: 계란, 치즈, 파 등 흔한 토핑으로 인스턴트 라면 업그레이드하는 법
-  referenceStyle: Maangchi 톤 참고
 - dish: Jjajangmyeon (Black Bean Noodles)
   tier: popular
   notes: 시판 짜장 소스 활용법과 처음부터 만드는 법 둘 다 언급
