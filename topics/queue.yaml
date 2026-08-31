@@ -9,10 +9,6 @@
 #   tier: "popular" | "chef-simple"
 #   notes: "이 레시피에서 꼭 다뤘으면 하는 포인트 (선택)"
 #   referenceStyle: "톤/스타일 참고용 채널·블로그 (선택, 내용을 베끼라는 뜻이 아니라 톤 참고용)"
-- dish: Naengmyeon (Cold Noodles)
-  tier: popular
-  notes: 여름 요리로 소개, 육수 만드는 간단한 방법
-  referenceStyle: Korean Bapsang 톤 참고
 - dish: Hotteok (Sweet Filled Pancakes)
   tier: popular
   notes: 설탕 시럽이 새지 않게 봉하는 요령
