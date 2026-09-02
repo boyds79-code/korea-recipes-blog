@@ -9,10 +9,6 @@
 #   tier: "popular" | "chef-simple"
 #   notes: "이 레시피에서 꼭 다뤘으면 하는 포인트 (선택)"
 #   referenceStyle: "톤/스타일 참고용 채널·블로그 (선택, 내용을 베끼라는 뜻이 아니라 톤 참고용)"
-- dish: Pajeon & Kimchijeon (Savory Korean Pancakes)
-  tier: popular
-  notes: 바삭하게 부치는 반죽 비율, 초간장 레시피 포함
-  referenceStyle: Beyond Kimchee 톤 참고
 - dish: Gyeranmari (Rolled Omelette)
   tier: popular
   notes: 도시락 반찬으로 소개, 예쁘게 마는 팁
