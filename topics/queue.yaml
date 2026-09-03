@@ -9,10 +9,6 @@
 #   tier: "popular" | "chef-simple"
 #   notes: "이 레시피에서 꼭 다뤘으면 하는 포인트 (선택)"
 #   referenceStyle: "톤/스타일 참고용 채널·블로그 (선택, 내용을 베끼라는 뜻이 아니라 톤 참고용)"
-- dish: Gyeranmari (Rolled Omelette)
-  tier: popular
-  notes: 도시락 반찬으로 소개, 예쁘게 마는 팁
-  referenceStyle: My Korean Kitchen 톤 참고
 - dish: Eomuk Guk / Odeng (Korean Fish Cake Soup)
   tier: popular
   notes: 길거리 분식 느낌, 국물 육수 간단하게 내는 법
