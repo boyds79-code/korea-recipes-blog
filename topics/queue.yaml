@@ -9,50 +9,6 @@
 #   tier: "popular" | "chef-simple"
 #   notes: "이 레시피에서 꼭 다뤘으면 하는 포인트 (선택)"
 #   referenceStyle: "톤/스타일 참고용 채널·블로그 (선택, 내용을 베끼라는 뜻이 아니라 톤 참고용)"
-- dish: Kimchi Fried Rice (Kimchi Bokkeumbap)
-  tier: popular
-  notes: 신 김치 활용법, 계란후라이 올리는 마무리
-  referenceStyle: The Korean Vegan(비건 버전 언급) 톤 참고
-- dish: Bossam (Korean Boiled Pork Wraps)
-  tier: popular
-  notes: 잡내 없애는 삶는 법, 무생채 곁들이는 법
-  referenceStyle: Korean Bapsang 톤 참고
-- dish: Jeyuk Bokkeum (Spicy Stir-fried Pork)
-  tier: popular
-  notes: 고기 밑간 시간, 눌러붙지 않게 볶는 팁
-  referenceStyle: Beyond Kimchee 톤 참고
-- dish: Dak Galbi (Spicy Stir-fried Chicken)
-  tier: popular
-  notes: 떡, 고구마 등 곁들이는 재료, 마지막 볶음밥 활용법
-  referenceStyle: Future Neighbor 톤 참고
-- dish: Budae Jjigae (Army Stew)
-  tier: popular
-  notes: 스팸, 소시지, 라면사리 넣는 순서와 이유
-  referenceStyle: Seonkyoung Longest 톤 참고
-- dish: Leveled-Up Korean Ramyeon (Instant Noodle Upgrades)
-  tier: popular
-  notes: 계란, 치즈, 파 등 흔한 토핑으로 인스턴트 라면 업그레이드하는 법
-  referenceStyle: Maangchi 톤 참고
-- dish: Jjajangmyeon (Black Bean Noodles)
-  tier: popular
-  notes: 시판 짜장 소스 활용법과 처음부터 만드는 법 둘 다 언급
-  referenceStyle: My Korean Kitchen 톤 참고
-- dish: Naengmyeon (Cold Noodles)
-  tier: popular
-  notes: 여름 요리로 소개, 육수 만드는 간단한 방법
-  referenceStyle: Korean Bapsang 톤 참고
-- dish: Hotteok (Sweet Filled Pancakes)
-  tier: popular
-  notes: 설탕 시럽이 새지 않게 봉하는 요령
-  referenceStyle: Maangchi 톤 참고
-- dish: Pajeon & Kimchijeon (Savory Korean Pancakes)
-  tier: popular
-  notes: 바삭하게 부치는 반죽 비율, 초간장 레시피 포함
-  referenceStyle: Beyond Kimchee 톤 참고
-- dish: Gyeranmari (Rolled Omelette)
-  tier: popular
-  notes: 도시락 반찬으로 소개, 예쁘게 마는 팁
-  referenceStyle: My Korean Kitchen 톤 참고
 - dish: Eomuk Guk / Odeng (Korean Fish Cake Soup)
   tier: popular
   notes: 길거리 분식 느낌, 국물 육수 간단하게 내는 법
